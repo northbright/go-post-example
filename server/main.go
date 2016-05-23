@@ -20,6 +20,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 		// Call ParseForm() to parse the raw query and update r.PostForm and r.Form.
 		if err := r.ParseForm(); err != nil {
 			fmt.Fprintf(w, "Hello, POT method. ParseForm() err: %v", err)
+			return
 		}
 
 		fmt.Fprintf(w, "Hello, POST method. r.PostForm = %v", r.PostForm)
