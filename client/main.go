@@ -15,13 +15,13 @@ const (
 func main() {
 	// Add form data
 	v := url.Values{}
-	v.Add("o", "omega")
-	v.Add("b", "beta")
-	v.Add("z", "zeta")
-	v.Add("a", "alpha")
-	v.Add("g", "gamma")
-	v.Add("ch", "chip china cheap")
-	v.Add("中", "中文 中国 中心")
+	v.Set("o", "omega")
+	v.Set("b", "beta")
+	v.Set("z", "zeta")
+	v.Set("a", "alpha")
+	v.Set("g", "gamma")
+	v.Set("ch", "chip china cheap")
+	v.Set("中", "中文 中国 中心")
 
 	// Values.Encode() encodes the values into "URL encoded" form sorted by key.
 	s := v.Encode()
