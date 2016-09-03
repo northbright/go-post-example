@@ -15,6 +15,7 @@ const (
 func main() {
 	// Add form data
 	v := url.Values{}
+	v.Set("post_from", "client")
 	v.Set("o", "omega")
 	v.Set("b", "beta")
 	v.Set("z", "zeta")
