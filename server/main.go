@@ -34,7 +34,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "Post from client! r.PostForm = %v\n", r.PostForm)
 
 		default:
-			fmt.Fprintf(w, "Unkown post source:-(\n")
+			fmt.Fprintf(w, "Unknown post source:-(\n")
 		}
 	default:
 		fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
