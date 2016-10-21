@@ -51,7 +51,7 @@ func main() {
 	}
 }
 
-var htmlStr string = `
+var htmlStr = `
 <!DOCTYPE html>
 <html>
 <head>
