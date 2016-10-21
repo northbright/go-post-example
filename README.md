@@ -1,6 +1,7 @@
 # go-post-example
 
 [![Build Status](https://travis-ci.org/northbright/go-post-example.svg?branch=master)](https://travis-ci.org/northbright/go-post-example)
+[![Go Report Card](https://goreportcard.com/badge/github.com/northbright/go-post-example)](https://goreportcard.com/report/github.com/northbright/go-post-example)
 
 [Golang](http://golang.org) example to do HTTP POST request from client and handle the request in server side.
 
