@@ -7,6 +7,8 @@
 
 #### Client
 * [Values.Encode()](https://godoc.org/net/url#Values.Encode) encodes the values into “URL encoded” form ("bar=baz&foo=quux") **sorted** by **key**.
+* POST JSON to server and read response.
 
 #### Server
 * [Request.ParseForm()](https://godoc.org/net/http#Request.ParseForm) will parse form data and update Request.PostForm.
+* Unmarshal JSON from POST data to a struct.

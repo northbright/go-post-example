@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -41,12 +42,39 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func jsonHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "/json only support POST method", http.StatusBadRequest)
+		return
+	}
+
+	type User struct {
+		Name  string `json:"name"`
+		Email string `json:"email"`
+	}
+
+	u := User{}
+
+	// Create a JSON decoder to read and decode JSON stream from request.Body.
+	dec := json.NewDecoder(r.Body)
+	if err := dec.Decode(&u); err != nil {
+		http.Error(w, "decode JSON error", http.StatusBadRequest)
+		return
+	}
+
+	fmt.Fprintf(w, "decode JSON successfully. Name: %v, Email: %v\n", u.Name, u.Email)
+	return
+}
+
 func main() {
 	// Index Handler
 	http.HandleFunc("/", hello)
 
+	// JSON handler
+	http.HandleFunc("/json", jsonHandler)
+
 	fmt.Printf("Starting server for testing HTTP POST...\n")
-	if err := http.ListenAndServe(":80", nil); err != nil {
+	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
 }

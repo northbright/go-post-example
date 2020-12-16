@@ -8,8 +8,9 @@ import (
 	"strings"
 )
 
-const (
-	homeURL string = "http://localhost:80"
+var (
+	homeURL = "http://localhost:8080"
+	jsonURL = homeURL + "/json"
 )
 
 func main() {
@@ -51,4 +52,30 @@ func main() {
 	}
 
 	fmt.Printf("read resp.Body successfully:\n%v\n", string(data))
+
+	// POST JSON data and read reponse.
+	jsonData := `{"name":"Frank", "email":"xx@xx.com"}`
+	reqJSON, err := http.NewRequest("POST", jsonURL, strings.NewReader(jsonData))
+	if err != nil {
+		fmt.Printf("http.NewRequest() error: %v\n", err)
+		return
+	}
+
+	req.Header.Add("Content-Type", "application/json")
+
+	respJSON, err := c.Do(reqJSON)
+	if err != nil {
+		fmt.Printf("http.Do() error: %v\n", err)
+		return
+	}
+	defer respJSON.Body.Close()
+
+	data, err = ioutil.ReadAll(respJSON.Body)
+	if err != nil {
+		fmt.Printf("ioutil.ReadAll() error: %v\n", err)
+		return
+	}
+
+	fmt.Printf("read resp.Body successfully:\n%v\n", string(data))
+
 }
